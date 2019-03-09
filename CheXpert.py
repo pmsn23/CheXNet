@@ -81,19 +81,15 @@ def create_model():
 
 def model_fit(model, data_augmentation):
 
-'''
-    Data Augmentation Options:
-    1) rotation_range is a value in degrees (0-180), a range within which to randomly rotate pictures.
-    2) width_shift and height_shift are ranges (as a fraction of total width or height) within which to randomly translate 
-    pictures vertically or horizontally.
-    3) shear_range is for randomly applying shearing transformations.
-    4) zoom_range is for randomly zooming inside pictures.
-    5) horizontal_flip is for randomly flipping half of the images horizontally -- relevant when 
-    there are no assumptions of horizontal asymmetry (e.g. real-world pictures).
-    6) fill_mode is the strategy used for filling in newly created pixels, which can appear 
-    after a rotation or a width/height shift.
 
-'''
+#    Data Augmentation Options:
+#    1) rotation_range is a value in degrees (0-180), a range within which to randomly rotate pictures.
+#    2) width_shift and height_shift are ranges (as a fraction of total width or height) within which to randomly translate pictures vertically or horizontally.
+#    3) shear_range is for randomly applying shearing transformations.
+#    4) zoom_range is for randomly zooming inside pictures.
+#    5) horizontal_flip is for randomly flipping half of the images horizontally -- relevant when there are no assumptions of horizontal asymmetry (e.g. real-world pictures).
+#    6) fill_mode is the strategy used for filling in newly created pixels, which can appear after a rotation or a width/height shift.
+
     if not data_augmentation:
         print('Not using data augmentation.')
         model.fit(M_train, L_train,
@@ -111,13 +107,13 @@ def model_fit(model, data_augmentation):
             samplewise_std_normalization=False,  # divide each input by its std
             zca_whitening=False,  # apply ZCA whitening
             zca_epsilon=1e-06,  # epsilon for ZCA whitening
-            rotation_range=0,  # randomly rotate images in the range (degrees, 0 to 180)
+            rotation_range=40,  # randomly rotate images in the range (degrees, 0 to 180)
             # randomly shift images horizontally (fraction of total width)
             width_shift_range=0.1,
             # randomly shift images vertically (fraction of total height)
             height_shift_range=0.1,
             shear_range=0.,  # set range for random shear
-            zoom_range=0.,  # set range for random zoom
+            zoom_range=0.2,  # set range for random zoom
             channel_shift_range=0.,  # set range for random channel shifts
             # set mode for filling points outside the input boundaries
             fill_mode='nearest',
